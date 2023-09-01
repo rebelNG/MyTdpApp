@@ -5,6 +5,8 @@
 trigger:
 - master
 
+pool: TdpAgent
+
 resources:
 - repo: self
 
