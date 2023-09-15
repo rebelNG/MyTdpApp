@@ -10,14 +10,15 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                pwsh(script: 'docker images -a')
-                pwsh(script: """
+                // Use the configured PowerShell tool
+                powershell script: 'docker images -a'
+                powershell script: """
                     cd MyTdpApp/
                     docker images -a
                     docker build -t jenkins-pipeline .
                     docker images -a
                     cd ..
-                """)
+                """
             }
         }
     }
