@@ -10,14 +10,13 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                pwsh(script: 'docker images -a')
-                pwsh(script: """
-                    cd MyTdpApp/
-                    docker images -a
-                    docker build -t jenkins-pipeline .
-                    docker images -a
-                    cd ..
-                """)
+                script {
+                    dir('MyTdpApp') {
+                        sh 'docker images -a'
+                        sh 'docker build -t jenkins-pipeline .'
+                        sh 'docker images -a'
+                    }
+                }
             }
         }
     }
